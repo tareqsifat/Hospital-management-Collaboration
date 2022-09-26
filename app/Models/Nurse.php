@@ -10,6 +10,7 @@ class Nurse extends Model
     use HasFactory;
     protected $fillable = [
    		'user_id',
+   		'experiance_year',
 		'previous_job_place',
 		'certificate_1',
 		'certificate_2',
@@ -20,7 +21,7 @@ class Nurse extends Model
 		'nursing_pass_year',
 		'ssc_school_name',
 		'hsc_collage_name',
-		'nursing_collage_name'
+		'nursing_collage_name',
 		'institute_1',
 		'institute_2',
 		'present_address',

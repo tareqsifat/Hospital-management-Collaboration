@@ -18,9 +18,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/nurse',[nurseContnroller::class,'index']);
-// Route::get('/nurse',[nurseContnroller::class,'show']);
-Route::post('/nurse',[nurseContnroller::class,'store']);
-Route::put('/nurse/{id}',[nurseContnroller::class,'update']);
-Route::delete('/nurse/{id}',[nurseContnroller::class,'delete']);
-// Route::resource('nurses',[nurseContnroller::class]);
+Route::get('/nurse',[nurseController::class,'index']);
+// Route::get('/nurse',[nurseController::class,'show']);
+Route::post('/nurse',[nurseController::class,'store']);
+Route::put('/nurse/{id}',[nurseController::class,'update']);
+Route::delete('/nurse/{id}',[nurseController::class,'delete']);
+// Route::resource('nurses',[nurseController::class]);

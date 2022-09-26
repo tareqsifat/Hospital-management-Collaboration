@@ -17,6 +17,7 @@ class CreateNursesTable extends Migration
             $table->id();
             $table->integer('user_id')->nullable();
             $table->string('previous_job_place')->nullable();
+            $table->integer('experiance_year')->nullable();
             $table->string('certificate_1')->nullable();
             $table->string('certificate_2')->nullable();
             $table->string('certificate_3')->nullable();
