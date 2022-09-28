@@ -25,6 +25,9 @@ class DoctorController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'user_id'=>'required'
+        ]);
         return Doctor::create($request->all());
     }
 
