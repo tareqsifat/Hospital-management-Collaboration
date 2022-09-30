@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Models\User;
+use App\Models\Doctor;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +15,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//Route::get('/', function () {
+    //return view('welcome');
+//});
+
+    //Route::get('/',function(){
+    //$doctor_show=User::find(1);
+    //$doctor_show=User::find(1)->doctor_shower;
+
+    //$users = User::all();
+
+    //return view ('welcome',compact('users'));
+//});

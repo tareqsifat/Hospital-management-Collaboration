@@ -14,7 +14,8 @@ class DoctorController extends Controller
      */
     public function index()
     {
-        return Doctor::all();
+        $users=Doctor::all();
+        return response()->json(['users'=>$users],200);
     }
 
     /**

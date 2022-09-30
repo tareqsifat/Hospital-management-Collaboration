@@ -3,7 +3,11 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\nurseController;
+use App\Http\Controllers\RelationController;
 use App\Http\Controllers\DoctorController;
+use App\Models\Nurse;
+use App\Models\Doctor;
+use App\Models\User;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -25,4 +29,6 @@ Route::post('/nurse',[nurseController::class,'store']);
 Route::put('/nurse/{id}',[nurseController::class,'update']);
 Route::delete('/nurse/{id}',[nurseController::class,'delete']);
 //Doctor Route
- Route::resource('doctor',DoctorController::class);
+Route::resource('doctor',DoctorController::class);
+
+

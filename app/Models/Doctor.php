@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Models;
+use App\Models\Nurse;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -33,4 +34,8 @@ class Doctor extends Model
         'slug',
         'status'
     ];
+    public function user_shower(){
+        return $this->belongsTo(User::class);
+    }
+
 }
