@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Doctor;
+use App\Models\User;
 use Validator;
 
 
@@ -34,9 +35,9 @@ class DoctorController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        $validator = Validator::make($request->all(),[
-        'user_id'=> 'required',
+    {   $doctors=Doctor::create($request->all());
+        $validator =Validator::make($request->all(),[
+        'user_id'=> ['required'],
         'year_of_experience'=> 'required',
         'previous_job_place'=> 'required',
         'certificate_1'=>'required',
@@ -63,32 +64,32 @@ class DoctorController extends Controller
         if($validator->fails()){
             return response()->json([$validator->errors()]);
         }
-        $doctor= new Doctor();
+        $doctors= new Doctor();
 
-        $doctor->user_id = $request->user_id;
-        $doctor->year_of_experience = $request->year_of_experience;
-        $doctor->previous_job_place = $request->previous_job_place;
-        $doctor->certificate_1 = $request->certificate_1;
-        $doctor->certificate_2 = $request->certificate_2;
-        $doctor->certificate_3 = $request->certificate_3;
-        $doctor->certificate_4 = $request->certificate_4;
-        $doctor->ssc_year = $request->ssc_year;
-        $doctor->hsc_year = $request->hsc_year;
-        $doctor->mbbs_year = $request->mbbs_year;
-        $doctor->school = $request->school;
-        $doctor->college = $request->college;
-        $doctor->medical_college = $request->medical_college;
-        $doctor->institute_1 = $request->institute_1;
-        $doctor->institute_2 = $request->institute_2;
-        $doctor->present_address_id = $request->present_address_id;
-        $doctor->permanent_address_id = $request->permanent_address_id;
-        $doctor->bank_data_id = $request->bank_data_id;
-        $doctor->is_active = $request->is_active;
-        $doctor->is_blocked = $request->is_blocked;
-        $doctor->slug = $request->slug;
-        $doctor->status = $request->status;
-        $doctor->creator = $request->creator;
-        $doctor->save;
+        $doctors->user_id = $request->user_id;
+        $doctors->year_of_experience = $request->year_of_experience;
+        $doctors->previous_job_place = $request->previous_job_place;
+        $doctors->certificate_1 = $request->certificate_1;
+        $doctors->certificate_2 = $request->certificate_2;
+        $doctors->certificate_3 = $request->certificate_3;
+        $doctors->certificate_4 = $request->certificate_4;
+        $doctors->ssc_year = $request->ssc_year;
+        $doctors->hsc_year = $request->hsc_year;
+        $doctors->mbbs_year = $request->mbbs_year;
+        $doctors->school = $request->school;
+        $doctors->college = $request->college;
+        $doctors->medical_college = $request->medical_college;
+        $doctors->institute_1 = $request->institute_1;
+        $doctors->institute_2 = $request->institute_2;
+        $doctors->present_address_id = $request->present_address_id;
+        $doctors->permanent_address_id = $request->permanent_address_id;
+        $doctors->bank_data_id = $request->bank_data_id;
+        $doctors->is_active = $request->is_active;
+        $doctors->is_blocked = $request->is_blocked;
+        $doctors->slug = $request->slug;
+        $doctors->status = $request->status;
+        $doctors->creator = $request->creator;
+        $doctors->save;
         $message='Doctor Successfully Added';
         return response()->json(['message'=>$message],201);
     }
