@@ -103,7 +103,14 @@ class DoctorController extends Controller
      */
     public function show($id)
     {
-        //
+       $doctor=Doctor::find($id);
+       if(isset($doctor) != 0){
+           return response()->json('$doctor');
+       }else{
+           return response()->json([
+               'Message'=>'Doctor Not Found'
+           ]);
+       }
     }
 
     /**
