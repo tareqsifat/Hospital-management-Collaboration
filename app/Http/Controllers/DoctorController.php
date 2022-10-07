@@ -90,7 +90,7 @@ class DoctorController extends Controller
         $doctors->status = $request->status;
         $doctors->creator = $request->creator;
         $doctors->save;
-        $message='Doctor Successfully Added';
+        $message='Doctor Added Successfully.';
         return response()->json(['message'=>$message],201);
     }
 
@@ -106,7 +106,7 @@ class DoctorController extends Controller
     {
        $doctor=Doctor::find($id);
        if(isset($doctor) != 0){
-           return response()->json('$doctor');
+           return response()->json($doctor);
        }else{
            return response()->json([
                'Message'=>'Doctor Not Found'
@@ -122,39 +122,37 @@ class DoctorController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-
         {
-            $doctors=Doctor::find($id);
-            If(isset($doctors)!= 0){
-            $doctors->update($request->all());
-            $validator =Validator::make($request->all(),[
-            'user_id'=> ['required'],
-            'year_of_experience'=> 'required',
-            'previous_job_place'=> 'required',
-            'certificate_1'=>'required',
-            'certificate_2' => 'required',
-            'certificate_3'=> 'required',
-            'certificate_4'=> 'required',
-            'ssc_year'=> 'required',
-            'hsc_year'=> 'required',
-            'mbbs_year'=> 'required',
-            'school'=> 'required',
-            'college'=> 'required',
-            'medical_college'=> 'required',
-            'institute_1'=> 'required',
-            'institute_2'=> 'required',
-            'present_address_id'=> 'required',
-            'permanent_address_id'=> 'required',
-            'bank_data_id'=> 'required',
-            'is_active'=> 'required',
-            'is_blocked'=> 'required',
-            'creator'=> 'required',
-            'slug'=> 'required',
-            'status'=> 'required'
-            ]);
-            if($validator->fails()){
+                $validator =Validator::make($request->all(),[
+                'user_id'=> ['required'],
+                'year_of_experience'=> 'required',
+                'previous_job_place'=> 'required',
+                'certificate_1'=>'required',
+                'certificate_2' => 'required',
+                'certificate_3'=> 'required',
+                'certificate_4'=> 'required',
+                'ssc_year'=> 'required',
+                'hsc_year'=> 'required',
+                'mbbs_year'=> 'required',
+                'school'=> 'required',
+                'college'=> 'required',
+                'medical_college'=> 'required',
+                'institute_1'=> 'required',
+                'institute_2'=> 'required',
+                'present_address_id'=> 'required',
+                'permanent_address_id'=> 'required',
+                'bank_data_id'=> 'required',
+                'is_active'=> 'required',
+                'is_blocked'=> 'required',
+                'creator'=> 'required',
+                'slug'=> 'required',
+                'status'=> 'required'
+                ]);
+                $doctors=Doctor::find($id);
+                 If(isset($doctors)!= 0){
+               if($validator->fails()){
                 return response()->json([$validator->errors()]);
-            }
+             }
             $doctors->user_id = $request->user_id;
             $doctors->year_of_experience = $request->year_of_experience;
             $doctors->previous_job_place = $request->previous_job_place;
@@ -178,13 +176,14 @@ class DoctorController extends Controller
             $doctors->slug = $request->slug;
             $doctors->status = $request->status;
             $doctors->creator = $request->creator;
-            $doctors->save;
-            $message='Doctor Successfully Added';
+            $doctors->save();
+            $message='Doctor Updated Successfully.';
             return response()->json(['message'=>$message],201);
             }else{
                 return response()->json([
                     'Message'=>'Doctor Not Found'
                 ]);
+
             }
         }
 
@@ -199,9 +198,10 @@ class DoctorController extends Controller
      */
     public function destroy($id)
     {
-        $doctors=Doctor::find($id);
-        $doctor=Doctor::destroy($id);
-        if(isset($doctors) != 0){
+        $doctor=Doctor::find($id);
+        if(isset($doctor) && $doctor->status != 0){
+            $doctor->status = 0;
+            $doctor->save();
             return response()->json(['message'=>'Doctor deleted Successfully.']);
         }else{
             return response()->json([
